@@ -15,13 +15,20 @@ RSpec.configure do | config |
 
     url = "https://#{ENV['SAUCE_USERNAME']}:#{ENV['SAUCE_ACCESS_KEY']}@ondemand.saucelabs.com:443/wd/hub".strip
 
-    @browser = Watir::Browser.new(:remote, url: url, desired_capabilities: capabilities)
+    @driver = Selenium::WebDriver.for :remote, {url: url,
+                                                desired_capabilities: capabilities}
 
     @eyes = Applitools::Eyes.new
     @eyes.api_key = ENV['APPLITOOLS_ACCESS_KEY']
   end
 
-  config.after(:each) do | example |
+  config.after(:each) do | test |
+    @eyes.test(app_name: 'Applitools', test_name: test,
+               viewport_size: {width: 1008, height: 615}, driver: @driver) do
+      # Visual validation point #1
+      @eyes.check_window('Main Page')
+    end
+
     session_id = @browser.wd.session_id
     SauceWhisk::Jobs.change_status(session_id, example.exception.nil?)
   end
