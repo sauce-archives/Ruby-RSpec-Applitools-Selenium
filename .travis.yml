@@ -5,7 +5,8 @@ before_install:
 - export | grep SAUCE_
 env:
   global:
-  - SAUCE_USERNAME=sauce_examples
+    - BUILD_TAG=$TRAVIS_REPO_SLUG+$TRAVIS_BUILD_NUMBER
+    - SAUCE_USERNAME=sauce_examples
 addons:
   jwt:
     secure: ePfMYoTpv+bjUW0vc+aw7tcBEp0QoHvBtnuoYHTpIaG9qBNxtyw1JcOZc6RHCactksx0HQXBgxMVIBqvH4BSojvWUj2IkbONjdz/rKnTQa9gLuOsRLUzZZ8HMa7Qu7fVaTfss2BXa8gbGeW8buruxuewswVVkaA8JrHRbpmxDVM+DbV6J0gt05NPnpeTiQXWZ/o04rsSY3uyjAZlioL7ZgHryb8vE7OaIcW7mjO08VKMjTI72WdIRXjWMk6wwaa+N3d8y1Q9XPvyHhsDtkH89fDwlpNyMTBE6d+SMIn6skDXDVsBNYgeU7b0/FaEs9oOKi0HjRVqjrPZMrCp8/NN2/A8PUkUX7pSNnadTNR/Xou3jT8h0KEudTb/oF8It0P32GIo9kYYUj/81RVajTP9dnnelVwoJSWtMPmu9w25w3q+q8VZB5i4ALlZb7Im8nSMGrIFXg3gzfcbXtQ18qE4XyztuMikIZwvn1n29tbXnH+2I8sDUrAFDKu12a2kM4uej+plw7zfx616FmHCC00igkm8OkeX9CBlLDyAbbx6YVrF4G+urImwRmzT0GPzOrGsRXc7h0xCdHmF3pACIbTI3iokGyUEHIdmgcXSwp0KvQMZ6QjO4rsXRgreMWr3NLmK5PEWFffgKQ7v4rN9yIznEKh5xpdCzndTlb1cIixf1DA=
